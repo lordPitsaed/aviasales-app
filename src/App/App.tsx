@@ -49,7 +49,8 @@ function App() {
       <div className={classes.App}>
         <div className={classes.appError}>
           Произошла ошибка при получении SearchId. Работа приложения далее
-          невозможна.
+          невозможна. Попробуйте обновить страницу, если ошибка сохранится
+          сообщите нам.
         </div>
       </div>
     );
@@ -60,7 +61,8 @@ function App() {
       <div className={classes.dataLoad}>
         {errorShown && errorTicketFlag && (
           <div className={classes.dataLoadError}>
-            При получении некоторых билетов, возникла ошибка.
+            При получении некоторых билетов, возникла ошибка. Попробуйте
+            обновить страницу, если ошибка сохранится сообщите нам.
             <button
               className={classes.closeError}
               onClick={() => {
