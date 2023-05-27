@@ -80,7 +80,7 @@ const filterSegments = (
       const filterCode = filterToCode(filter);
       const filteredTickets = tickets.filter((ticket: Ticket) => {
         return (
-          ticket.segments[0].stops.length === filterCode &&
+          ticket.segments[0].stops.length === filterCode ||
           ticket.segments[1].stops.length === filterCode
         );
       });

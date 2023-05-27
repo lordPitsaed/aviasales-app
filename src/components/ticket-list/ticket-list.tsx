@@ -35,7 +35,7 @@ const TicketList: React.FC = () => {
   }, [dispatch, canRender, filters, selectSort, status]);
 
   if (tickets.length === 0 && canShowNothingFound) {
-    return <div>Поиск не дал результатов, проверьте выбранные фильтры.</div>;
+    return <div>Рейсов, подходящих под заданные фильтры, не найдено</div>;
   }
 
   return (
