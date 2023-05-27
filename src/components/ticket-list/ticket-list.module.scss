@@ -1,0 +1,32 @@
+@import '../../App/App.module.scss';
+
+.ticketList {
+    display: flex;
+    flex-direction: column;
+    gap: $gap-size;
+    list-style: none;
+    padding: 0;
+    min-height: 204px;
+    max-width: 502px;
+
+    @media screen and (max-width: 750px) {
+        max-width: 750px;
+        width: 100%;
+    }
+}
+
+.showMoreButton {
+    width: 100%;
+    margin: 20px 0;
+    border: none;
+    background: $color-secondary;
+    color: $color-text-alt;
+    height: 50px;
+    border-radius: 5px;
+    text-transform: uppercase;
+
+    &:hover {
+        -webkit-filter: saturate(.8);
+        filter: saturate(.8);
+    }
+}

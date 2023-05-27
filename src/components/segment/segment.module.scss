@@ -1,0 +1,21 @@
+ @import '../../App/App.module.scss';
+
+ .tableRow {
+     display: grid;
+     grid-template-columns: repeat(3, 1fr);
+     grid-template-rows: 1fr;
+     grid-column-gap: 0px;
+     grid-row-gap: 0px;
+
+     .tableHeader {
+         color: #A0B0B9;
+     }
+
+     .tableCell {
+         font-size: 14px;
+     }
+ }
+
+ .route {
+     margin-bottom: 10px;
+ }

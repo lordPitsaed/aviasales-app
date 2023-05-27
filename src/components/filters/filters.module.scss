@@ -1,0 +1,71 @@
+@import '../../App/App.module.scss';
+
+.filters {
+    max-width: 232px;
+    width: 100%;
+    height: 252px;
+    background-color: $color-primary;
+    border-radius: 5px;
+    box-shadow: 0px 2px 8px rgba(0, 0, 0, 0.1);
+    padding-top: $gap-size;
+    padding-bottom: $gap-size;
+    display: flex;
+    flex-direction: column;
+
+    @media screen and (max-width: 750px) {
+        max-width: 750px;
+    }
+
+    .filtersHeader {
+        padding-left: $gap-size;
+        margin-bottom: 10px;
+    }
+
+    .checkbox {
+        width: 232px;
+        height: 40px;
+        padding-left: $gap-size;
+        cursor: pointer;
+        display: flex;
+        align-items: center;
+        transition: all .2s ease;
+
+        span {
+            font-weight: 400;
+        }
+
+        input {
+            margin-right: 10px;
+            -webkit-appearance: none;
+            -moz-appearance: none;
+            appearance: none;
+            width: 20px;
+            height: 20px;
+            border: 1px solid #9abbce;
+            border-radius: 2px;
+            transition: all .2s ease;
+        }
+
+        input:checked,
+        input:hover {
+            border-color: $color-secondary;
+        }
+
+        input:checked:after {
+            content: '';
+            display: inline-block;
+            width: 9px;
+            height: 5px;
+            transform: rotate(-45deg) skewX(10deg);
+            border-left: 2px solid $color-secondary;
+            border-bottom: 2px solid $color-secondary;
+            position: relative;
+            left: 4px;
+            top: -2px;
+        }
+    }
+
+    .checkbox:hover {
+        background-color: $hover-color;
+    }
+}

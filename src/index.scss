@@ -1,0 +1,19 @@
+$app-background-color: #F3F7FA;
+@import url('https://fonts.googleapis.com/css2?family=Open+Sans:wght@400;600&display=swap');
+
+*,
+:root {
+  box-sizing: border-box;
+  margin: 0;
+  font-family: 'Open Sans', sans-serif;
+  font-size: 12px;
+  font-weight: 600;
+}
+
+html {
+  scrollbar-gutter: stable both-edges;
+}
+
+body {
+  background-color: $app-background-color;
+}

@@ -1,0 +1,106 @@
+$color-primary: white;
+$color-secondary: #2196F3;
+$color-text-primary: #4A4A4A;
+$color-text-alt: white;
+$hover-color: #f1fcff;
+$gap-size: 20px;
+
+.App {
+  width: 756px;
+  min-width: 288px;
+  margin: 0 auto;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding-top: 50px;
+  color: $color-text-primary;
+
+
+  @media screen and (max-width: 750px) {
+    width: 100%;
+  }
+
+  .dataLoad {
+    position: -webkit-sticky;
+    position: sticky;
+    margin-top: -50px;
+    top: 0px;
+    left: 20px;
+    align-self: flex-start;
+    z-index: 3;
+    width: 100%;
+    border-radius: 5px;
+    min-height: 50px;
+
+    .dataLoadInfo {
+      color: $color-text-primary;
+      display: flex;
+      flex-direction: row;
+      justify-content: space-between;
+      padding: 20px;
+      border-radius: inherit;
+      background-color: #F3F7FA;
+    }
+
+    .dataLoadError {
+      background-color: tomato;
+      border-radius: inherit;
+      padding: 20px;
+      display: flex;
+      justify-content: space-between;
+
+      .closeError {
+        width: 0px;
+        height: 0px;
+        border: none;
+        padding: 0;
+      }
+
+      .closeError::after {
+        content: "🗙";
+      }
+    }
+  }
+
+  .logo {
+    width: 60px;
+    margin-bottom: 50px;
+  }
+
+  .loadingWrapper {
+    width: 100%;
+  }
+
+  .main {
+    display: flex;
+    flex-direction: row;
+    gap: $gap-size;
+    width: 100%;
+
+    @media screen and (max-width: 750px) {
+      flex-direction: column;
+    }
+
+    .column {
+      width: 100%;
+
+      @media screen and (max-width: 750px) {
+        width: 100%;
+      }
+
+
+
+    }
+  }
+
+}
+
+.appError {
+  background-color: tomato;
+  width: 100%;
+  height: 50px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 5px
+}

@@ -1,0 +1,48 @@
+ @import '../../App/App.module.scss';
+
+ .sort {
+     width: 100%;
+     height: 50px;
+     border-radius: 5px;
+     margin-bottom: $gap-size;
+     display: flex;
+     align-items: center;
+
+     button {
+         -webkit-appearance: none;
+         -moz-appearance: none;
+         appearance: none;
+         width: 33%;
+         height: 50px;
+         border: 1px solid #DFE5EC;
+         background: white;
+         color: $color-text-primary;
+         word-wrap: break-word;
+
+         &:hover {
+             background-color: $hover-color;
+         }
+     }
+
+     button:nth-child(2n) {
+         border-left: none;
+         border-right: none;
+     }
+
+     button:first-child {
+         border-radius: 5px 0 0 5px;
+     }
+
+     button:last-child {
+         border-radius: 0 5px 5px 0;
+     }
+
+     .activeButton {
+         background-color: $color-secondary;
+         color: $color-text-alt;
+
+         &:hover {
+             background-color: $color-secondary;
+         }
+     }
+ }
