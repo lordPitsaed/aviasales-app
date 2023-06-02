@@ -1,14 +1,14 @@
-import { Spin } from "antd";
-import { useEffect, useState } from "react";
-import { useDispatch, useSelector } from "react-redux";
-import Filters from "../components/filters/filters";
-import Sort from "../components/sort/sort";
-import TicketList from "../components/ticket-list/ticket-list";
-import { fetchTickets } from "../components/ticket-list/ticketListSlice";
-import { AppDispatch, RootState } from "../store";
-import classes from "./App.module.scss";
-import { fetchSearchId } from "./appSlice";
-import logo from "./logo.svg";
+import { Spin } from 'antd';
+import React, { useEffect, useState } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
+import Filters from '../components/filters/filters';
+import Sort from '../components/sort/sort';
+import TicketList from '../components/ticket-list/ticket-list';
+import { fetchTickets } from '../components/ticket-list/ticketListSlice';
+import { AppDispatch, RootState } from '../store';
+import classes from './App.module.scss';
+import { fetchSearchId } from './appSlice';
+import logo from './logo.svg';
 
 function App() {
   const dispatch = useDispatch<AppDispatch>();
@@ -29,15 +29,15 @@ function App() {
   const [errorShown, setErrorShown] = useState<boolean>(true);
 
   useEffect(() => {
-    if (appStatus === "idle") {
+    if (appStatus === 'idle') {
       dispatch(fetchSearchId());
     }
   }, [appStatus, dispatch]);
 
   useEffect(() => {
     if (
-      appStatus === "succeeded" &&
-      ticketStatus === "idle" &&
+      appStatus === 'succeeded' &&
+      ticketStatus === 'idle' &&
       stopFlag === false
     ) {
       dispatch(fetchTickets(searchId));
@@ -67,27 +67,24 @@ function App() {
               className={classes.closeError}
               onClick={() => {
                 setErrorShown(false);
-              }}
-            ></button>
+              }}></button>
           </div>
         )}
         <div
           style={{ display: stopFlag ? `none` : `flex` }}
-          className={classes.dataLoadInfo}
-        >
+          className={classes.dataLoadInfo}>
           <span className={classes.infoText}>
             Получаем билеты, конечные результаты могут отличаться...
           </span>
           <Spin></Spin>
         </div>
       </div>
-      <img src={logo} alt="logo" className={classes.logo}></img>
+      <img src={logo} alt='logo' className={classes.logo}></img>
       <Spin
-        spinning={appStatus === "loading"}
-        size="large"
-        tip="Getting SearchID..."
-        wrapperClassName={classes.loadingWrapper}
-      >
+        spinning={appStatus === 'loading'}
+        size='large'
+        tip='Getting SearchID...'
+        wrapperClassName={classes.loadingWrapper}>
         <div className={classes.main}>
           <Filters></Filters>
           <div className={classes.column}>
@@ -101,3 +98,4 @@ function App() {
 }
 
 export default App;
+
