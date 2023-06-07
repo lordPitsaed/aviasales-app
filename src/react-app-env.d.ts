@@ -1,7 +1,7 @@
 /// <reference types="react-scripts" />
 
-import { SerializedError } from "@reduxjs/toolkit";
-import { Status } from "./enum";
+import { SerializedError } from '@reduxjs/toolkit';
+import { Status } from './enum';
 
 interface FiltersType {
   all: boolean;
@@ -41,8 +41,6 @@ declare global {
     stop: boolean;
     status: Status;
     error: SerializedError[];
-    ticketsToRender: Ticket[];
-    currentLastTicket: 10;
     canRender: boolean;
   }
 
