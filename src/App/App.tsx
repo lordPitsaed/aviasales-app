@@ -67,12 +67,14 @@ function App() {
               className={classes.closeError}
               onClick={() => {
                 setErrorShown(false);
-              }}></button>
+              }}
+            ></button>
           </div>
         )}
         <div
           style={{ display: stopFlag ? `none` : `flex` }}
-          className={classes.dataLoadInfo}>
+          className={classes.dataLoadInfo}
+        >
           <span className={classes.infoText}>
             Получаем билеты, конечные результаты могут отличаться...
           </span>
@@ -83,8 +85,9 @@ function App() {
       <Spin
         spinning={appStatus === 'loading'}
         size='large'
-        tip='Getting SearchID...'
-        wrapperClassName={classes.loadingWrapper}>
+        tip='Получаем ID для поиска...'
+        wrapperClassName={classes.loadingWrapper}
+      >
         <div className={classes.main}>
           <Filters></Filters>
           <div className={classes.column}>
@@ -98,4 +101,3 @@ function App() {
 }
 
 export default App;
-

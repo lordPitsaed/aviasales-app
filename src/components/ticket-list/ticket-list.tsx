@@ -18,21 +18,26 @@ const TicketList: React.FC = () => {
 
   const [lastTicket, setLastTicket] = useState(10);
   const [readyTickets, setReadyTickets] = useState<TicketType[]>([]);
+  const [showNothing, setShowNothing] = useState(false);
 
   useEffect(() => {
     const ticketsSet: TicketType[] = [];
     if (canRender && tickets.length > 0) {
       const filteredTickets = filterSegments(tickets, filters, selectSort);
       ticketsSet.push(...filteredTickets.slice(0, lastTicket));
+      ticketsSet.length === 0 ? setShowNothing(true) : setShowNothing(false);
       setReadyTickets(ticketsSet);
     }
   }, [tickets, filters, selectSort, lastTicket]);
 
-  if (readyTickets.length === 0) {
+  if (readyTickets.length === 0 && showNothing) {
     return <div>Рейсов, подходящих под заданные фильтры, не найдено</div>;
   }
   return (
-    <Spin spinning={tickets.length === 0} tip={'Getting Tickets...'}>
+    <Spin
+      spinning={readyTickets.length === 0}
+      tip={'Получаем первую пачку билетов...'}
+    >
       <ul className={classes.ticketList}>
         {readyTickets.map((ticket) => {
           return <Ticket ticket={ticket} key={nanoid()} />;
