@@ -20,11 +20,7 @@ const ticketListSlice = createSlice({
       })
       .addCase(fetchTickets.fulfilled, (state, action) => {
         state.status = Status.SUCCEEDED;
-        const markedTickets = action.payload.tickets.map((ticket) => {
-          ticket['key'] = nanoid();
-          return ticket;
-        });
-        state.tickets = state.tickets.concat(markedTickets);
+        state.tickets = state.tickets.concat(...action.payload.tickets);
         state.stop = action.payload.stop;
         state.status = Status.IDLE;
         state.canRender = true;

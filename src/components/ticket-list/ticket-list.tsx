@@ -24,26 +24,17 @@ const TicketList: React.FC = () => {
     [tickets, filters, selectSort]
   );
 
-  useEffect(() => {
-    console.log('finding duplicates');
-    const dupArr: [TicketType, TicketType][] = [];
-    for (let i = 0; i < tickets.length; i++) {
-      const ticketRef = { ...tickets[i] };
-      ticketRef['key'] = '';
-      for (let j = 0; j < tickets.length; j++) {
-        const ticketNow = { ...tickets[j] };
-        ticketNow['key'] = '';
-        if (
-          JSON.stringify(ticketNow) === JSON.stringify(ticketRef) &&
-          i !== j
-        ) {
-          dupArr.push([tickets[i], tickets[j]]);
-        }
+  const generateKey = (tickets: TicketType[], ticket: TicketType) => {
+    let key = JSON.stringify(ticket);
+    const arrRemainder = tickets.slice(tickets.indexOf(ticket) + 1);
+    arrRemainder.map((curr) => {
+      if (JSON.stringify(curr) === JSON.stringify(ticket)) {
+        console.log('dupe');
+        key += 'dupe';
       }
-    }
-    console.log(dupArr.length);
-    console.log(dupArr);
-  }, [tickets]);
+    });
+    return key;
+  };
 
   useEffect(() => {
     const ticketsSet: TicketType[] = [];
@@ -64,7 +55,9 @@ const TicketList: React.FC = () => {
     >
       <ul className={classes.ticketList}>
         {readyTickets.map((ticket) => {
-          return <Ticket ticket={ticket} key={ticket.key} />;
+          return (
+            <Ticket ticket={ticket} key={generateKey(readyTickets, ticket)} />
+          );
         })}
       </ul>
       <button
