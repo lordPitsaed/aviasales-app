@@ -51,6 +51,7 @@ export const filterSegments = (
   filters: FiltersType,
   sort: string
 ) => {
+  console.log(tickets);
   const result: Ticket[] = [];
   if (filters.all) {
     result.push(...tickets);
@@ -71,5 +72,6 @@ export const filterSegments = (
       result.push(...filteredTickets);
     }
   }
-  return sortTickets(result, sort);
+
+  return sortTickets(Array.from(new Set(result)), sort);
 };

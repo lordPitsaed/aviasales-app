@@ -19,17 +19,15 @@ const TicketList: React.FC = () => {
   const [readyTickets, setReadyTickets] = useState<TicketType[]>([]);
   const [showNothing, setShowNothing] = useState(false);
 
-  const filteredTickets = useMemo(
-    () => filterSegments(tickets, filters, selectSort),
-    [tickets, filters, selectSort]
-  );
+  const filteredTickets = useMemo(() => {
+    return filterSegments(tickets, filters, selectSort);
+  }, [tickets, filters, selectSort]);
 
   const generateKey = (tickets: TicketType[], ticket: TicketType) => {
-    let key = JSON.stringify(ticket);
+    let key = ticket.carrier + ticket.price + ticket.segments[0].duration;
     const arrRemainder = tickets.slice(tickets.indexOf(ticket) + 1);
     arrRemainder.map((curr) => {
       if (JSON.stringify(curr) === JSON.stringify(ticket)) {
-        console.log('dupe');
         key += 'dupe';
       }
     });
@@ -37,13 +35,13 @@ const TicketList: React.FC = () => {
   };
 
   useEffect(() => {
-    const ticketsSet: TicketType[] = [];
+    let ticketsSet: TicketType[] = [];
     if (canRender && tickets.length > 0) {
-      ticketsSet.push(...filteredTickets.slice(0, lastTicket));
+      ticketsSet = filteredTickets.slice(0, lastTicket);
       ticketsSet.length === 0 ? setShowNothing(true) : setShowNothing(false);
-      setReadyTickets(ticketsSet);
+      setReadyTickets(() => ticketsSet);
     }
-  }, [tickets, filters, selectSort, lastTicket]);
+  }, [lastTicket, filteredTickets]);
 
   if (readyTickets.length === 0 && showNothing) {
     return <div>Рейсов, подходящих под заданные фильтры, не найдено</div>;

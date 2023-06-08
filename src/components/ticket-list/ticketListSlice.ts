@@ -1,4 +1,4 @@
-import { createAsyncThunk, createSlice, nanoid } from '@reduxjs/toolkit';
+import { createAsyncThunk, createSlice } from '@reduxjs/toolkit';
 import aviasalesService from '../../aviasales-service';
 import { Status } from '../../enum';
 const initialState: ticketListState = {
@@ -20,7 +20,7 @@ const ticketListSlice = createSlice({
       })
       .addCase(fetchTickets.fulfilled, (state, action) => {
         state.status = Status.SUCCEEDED;
-        state.tickets = state.tickets.concat(...action.payload.tickets);
+        state.tickets = state.tickets.concat(action.payload.tickets);
         state.stop = action.payload.stop;
         state.status = Status.IDLE;
         state.canRender = true;
