@@ -10,14 +10,17 @@ export const filterToCode = (filter: string) => {
 export const sortTickets = (tickets: Ticket[], sort: string) => {
   const result = tickets;
   if (sort === 'cheapest') {
-    return result.sort((a: Ticket, b: Ticket) => a.price - b.price);
+    return result.sort((a: Ticket, b: Ticket) => {
+      return a.price - b.price;
+    });
   }
   if (sort === 'fastest') {
-    return result.sort(
-      (a: Ticket, b: Ticket) =>
+    return result.sort((a: Ticket, b: Ticket) => {
+      return (
         a.segments.reduce((acc, current) => acc + current.duration, 0) -
         b.segments.reduce((acc, current) => acc + current.duration, 0)
-    );
+      );
+    });
   }
   if (sort === 'optimal') {
     const maxPrice = Math.max(...tickets.map((ticket) => ticket.price));

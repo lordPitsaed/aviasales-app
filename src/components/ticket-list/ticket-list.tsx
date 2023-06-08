@@ -1,6 +1,5 @@
-import { nanoid } from '@reduxjs/toolkit';
 import { Spin } from 'antd';
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useMemo, useState } from 'react';
 import { useSelector } from 'react-redux';
 import { Ticket as TicketType } from '../../react-app-env';
 import { RootState } from '../../store';
@@ -20,10 +19,35 @@ const TicketList: React.FC = () => {
   const [readyTickets, setReadyTickets] = useState<TicketType[]>([]);
   const [showNothing, setShowNothing] = useState(false);
 
+  const filteredTickets = useMemo(
+    () => filterSegments(tickets, filters, selectSort),
+    [tickets, filters, selectSort]
+  );
+
+  useEffect(() => {
+    console.log('finding duplicates');
+    const dupArr: [TicketType, TicketType][] = [];
+    for (let i = 0; i < tickets.length; i++) {
+      const ticketRef = { ...tickets[i] };
+      ticketRef['key'] = '';
+      for (let j = 0; j < tickets.length; j++) {
+        const ticketNow = { ...tickets[j] };
+        ticketNow['key'] = '';
+        if (
+          JSON.stringify(ticketNow) === JSON.stringify(ticketRef) &&
+          i !== j
+        ) {
+          dupArr.push([tickets[i], tickets[j]]);
+        }
+      }
+    }
+    console.log(dupArr.length);
+    console.log(dupArr);
+  }, [tickets]);
+
   useEffect(() => {
     const ticketsSet: TicketType[] = [];
     if (canRender && tickets.length > 0) {
-      const filteredTickets = filterSegments(tickets, filters, selectSort);
       ticketsSet.push(...filteredTickets.slice(0, lastTicket));
       ticketsSet.length === 0 ? setShowNothing(true) : setShowNothing(false);
       setReadyTickets(ticketsSet);
@@ -40,7 +64,7 @@ const TicketList: React.FC = () => {
     >
       <ul className={classes.ticketList}>
         {readyTickets.map((ticket) => {
-          return <Ticket ticket={ticket} key={nanoid()} />;
+          return <Ticket ticket={ticket} key={ticket.key} />;
         })}
       </ul>
       <button
